@@ -1,0 +1,18 @@
+services:
+  parser:
+    build: ./services/parser
+    ports:
+      - "127.0.0.1:${DEMO_PORT:-8080}:8080"
+    environment:
+      HOST: 0.0.0.0
+      PORT: "8080"
+      OPERATION_PATH: /review
+      UPSTREAM_URL: http://quality:8081/score
+    depends_on:
+      - quality
+  quality:
+    build: ./services/quality
+    environment:
+      HOST: 0.0.0.0
+      PORT: "8081"
+      OPERATION_PATH: /score

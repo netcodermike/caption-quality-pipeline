@@ -1,0 +1,28 @@
+{
+  "slug": "caption-quality-pipeline",
+  "gateway": [
+    "parser",
+    "/review",
+    "JavaScript"
+  ],
+  "worker": [
+    "quality",
+    "/score",
+    "Python"
+  ],
+  "cases": [
+    [
+      "Review an overlapping caption sample",
+      {
+        "srt": "1\n00:00:00,000 --> 00:00:02,000\nThe tide is rising.\n\n2\n00:00:01,500 --> 00:00:02,000\nThat is too much text to read in half a second."
+      },
+      200,
+      {
+        "cues": 2,
+        "overlaps": 1,
+        "fastCues": 1,
+        "longLines": 1
+      }
+    ]
+  ]
+}
